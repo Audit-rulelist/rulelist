@@ -4,7 +4,7 @@
 (.*.||)(ipaddress|whatismyipaddress|whoer|iplocation|ip138).(org|com|net|my|to|co)
 (.*\.||)(sigmapool|hashcity|2miners|solo-etc|nanopool|minergate|comining|give-me-coins|hiveon|arsmine|baikalmine|solopool|litecoinpool|mining-dutch|clona|viabtc|beepool|maxhash|bwpool|coinminerz|miningcore|multipools|uupool|minexmr|pandaminer|f2pool|sparkpool|antpool|poolin|slushpool|marathondh|pool.btc)\.(cn|com|org|net|club|net|fr|tw|hk|eu|info|me|io)
 (.*.||)(360|so|oceanengine|awemueughun|bdurlsnssdk|pstatp|douyinpic|baike|amemv|ecombdapi|weshineapp|soulapp|tantanapp|ronghub|bldimg|blued|weibo|zhihu|toutiao|bytedance|zijieapi|xiaohongshu|xhscdn|sinaimg|douyinstatic).(com|cn|net|com.cn)
-torrent|\.torrent|peer_id=|info_hash|get_peers|find_node|BitTorrent|announce_peer|announce\.php\?passkey=|Joker)
+(torrent|\.torrent|peer_id=|info_hash|get_peers|find_node|BitTorrent|announce_peer|announce\.php\?passkey=|Joker)
 (.?)(xunlei|sandai|Thunder|XLLiveUD|IDM|IDMan)(.)
 BitTorrent protocol
 (Subject|HELO|SMTP)
