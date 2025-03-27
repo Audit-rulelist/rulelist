@@ -39,16 +39,4 @@ StandardError=journal
 WantedBy=multi-user.target
 EOF
 
-# 检查服务是否已存在
-if systemctl is-active --quiet "$service_name".service; then
-    echo "${service_name} 服务已经在运行。"
-else
-    # 保存后执行
-    sudo systemctl daemon-reload
-    sudo systemctl enable "$service_name".service
-    if sudo systemctl start "$service_name".service; then
-        echo "${service_name} Proxy Service 配置完成并启动。"
-    else
-        echo "启动 ${service_name} 服务失败。"
-    fi
-fi
+echo "${service_name} 服务配置文件已创建。"
