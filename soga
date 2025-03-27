@@ -1,0 +1,54 @@
+#!/bin/bash
+
+# 提示用户输入服务名称
+read -p "请输入服务名称 (例如：my-soga): " service_name
+
+# 验证输入是否为空
+if [ -z "$service_name" ]; then
+    echo "服务名称不能为空，脚本终止。"
+    exit 1
+fi
+
+# 根据用户输入生成文件名
+config_file="/etc/soga/${service_name}.conf"
+log_file="/etc/soga/${service_name}.log"
+service_file="/etc/systemd/system/${service_name}.service"
+
+# 创建配置文件和日志文件 (如果不存在)
+sudo touch "$config_file"
+sudo touch "$log_file"
+
+# 创建 systemd 服务文件
+sudo touch "$service_file"
+
+# 编辑 systemd 服务文件，使用用户输入的服务名称
+sudo tee "$service_file" > /dev/null <<EOF
+[Unit]
+Description=${service_name} Proxy Service
+After=network.target
+
+[Service]
+ExecStart=/usr/local/soga/soga -c $config_file
+WorkingDirectory=/usr/local/soga
+Restart=on-failure
+User=root
+StandardOutput=journal
+StandardError=journal
+
+[Install]
+WantedBy=multi-user.target
+EOF
+
+# 检查服务是否已存在
+if systemctl is-active --quiet "$service_name".service; then
+    echo "${service_name} 服务已经在运行。"
+else
+    # 保存后执行
+    sudo systemctl daemon-reload
+    sudo systemctl enable "$service_name".service
+    if sudo systemctl start "$service_name".service; then
+        echo "${service_name} Proxy Service 配置完成并启动。"
+    else
+        echo "启动 ${service_name} 服务失败。"
+    fi
+fi
